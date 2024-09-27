@@ -1,0 +1,3 @@
+/Users/sinicynaleksej/4ISMA/cmake-build-debug/CMakeFiles/4isma.dir
+/Users/sinicynaleksej/4ISMA/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sinicynaleksej/4ISMA/cmake-build-debug/CMakeFiles/rebuild_cache.dir

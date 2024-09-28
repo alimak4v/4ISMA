@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "4isma"
   "4isma.pdb"
+  "CMakeFiles/4isma.dir/Button.cpp.o"
+  "CMakeFiles/4isma.dir/Button.cpp.o.d"
   "CMakeFiles/4isma.dir/main.cpp.o"
   "CMakeFiles/4isma.dir/main.cpp.o.d"
 )

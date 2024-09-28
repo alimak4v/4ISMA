@@ -1,4 +1,4 @@
-CMakeFiles/4isma.dir/main.cpp.o: /Users/sinicynaleksej/4ISMA/main.cpp \
+CMakeFiles/4isma.dir/Button.cpp.o: /Users/sinicynaleksej/4ISMA/Button.cpp \
   /opt/homebrew/Cellar/sfml/2.6.1/include/SFML/Graphics.hpp \
   /opt/homebrew/Cellar/sfml/2.6.1/include/SFML/Window.hpp \
   /opt/homebrew/Cellar/sfml/2.6.1/include/SFML/System.hpp \

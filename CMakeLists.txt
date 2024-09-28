@@ -5,7 +5,7 @@ project(4ISMA)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(4isma main.cpp)
+add_executable(4isma main.cpp Button.cpp Button.h)
 
 set(SFML_DIR "/opt/homebrew/Cellar/sfml/2.6.1/lib/cmake/SFML")
 

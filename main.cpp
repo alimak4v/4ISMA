@@ -136,7 +136,31 @@ int main() {
     int period_p = 12; // месяцы игры
     int insurance_p = 25; // процент угрозы
     //================================================================================================================
+    int now_capital = 0;
+    vector<pair<int, pair<int, int>>> journal; // (месяц, [тип страховки, сумма погашения])
+    //------------------------------------
+    Button capital_b;
+    capital_b.setPosition({10, 10});
+    capital_b.setSize({180, 40});
+    capital_b.setText(to_string(now_capital) + "$");
+    //------------------------------------
+    Button settings_b;
+    settings_b.setPosition({566, 10});
+    settings_b.setSize({144, 40});
+    settings_b.setText("settings");
+    //------------------------------------
+    Button next_month;
+    next_month.setPosition({530, 60});
+    next_month.setSize({180, 40});
+    next_month.setText("next month");
+    //------------------------------------
+    int month = 0;
 
+    Button num_month;
+    num_month.setPosition({10, 60});
+    num_month.setSize({144, 40});
+    num_month.setText(to_string(month) + " month");
+    //================================================================================================================
     string scene = "start_screen";
 
     while (window.isOpen()) {
@@ -258,6 +282,7 @@ int main() {
                     }
                     if (next.isPressed(window)) {
                         scene = "game_screen";
+                        now_capital = capital_p;
                     }
                 }
             }
@@ -312,9 +337,23 @@ int main() {
                 if (event.type == sf::Event::Closed) {
                     window.close();
                 }
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                    if (settings_b.isPressed(window)) {
+                        scene = "settings_screen";
+                    }
+                    else if (next_month.isPressed(window)) {
+                        ++month;
+                        num_month.setText(to_string(month) + " month");
+                    }
+                }
+                capital_b.setText(to_string(now_capital) + "$");
             }
 
             window.clear(sf::Color::White);
+            capital_b.show(window);
+            next_month.show(window);
+            settings_b.show(window);
+            num_month.show(window);
             window.display();
         }
     }

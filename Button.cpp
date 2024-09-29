@@ -45,3 +45,7 @@ bool Button::isPressed(sf::RenderWindow &window) {
     }
     return false;
 }
+
+void Button::setColor(sf::Color color) {
+    rectangle_.setFillColor(color);
+}

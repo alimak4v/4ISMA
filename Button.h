@@ -18,6 +18,7 @@ public:
     void setSize(std::pair<float, float> size);
     void show(sf::RenderWindow &window);
     bool isPressed(sf::RenderWindow &window);
+    void setColor(sf::Color color);
 private:
     sf::RectangleShape rectangle_;
     sf::Font font_;

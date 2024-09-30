@@ -23,7 +23,10 @@
     <list default="true" id="382f2646-9d29-49e0-af2f-ffe19326eddc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/4isma" beforeDir="false" afterPath="$PROJECT_DIR$/4isma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o.d" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +101,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727445907141</updated>
-      <workItem from="1727445908693" duration="29976000" />
+      <workItem from="1727445908693" duration="41313000" />
     </task>
     <servers />
   </component>

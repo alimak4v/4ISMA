@@ -2,9 +2,13 @@
 #include <iostream>
 #include <utility>
 #include <string>
+#include <random>
+#include <chrono>
 #include "Button.h"
 
 using namespace std;
+
+mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
 /*
  * ERRORS
@@ -130,14 +134,14 @@ int main() {
     next.setSize({72, 40});
     next.setText("next");
     //------------------------------------
-    int capital_p = 1000000; // начальный капитал ₽
+    int capital_p = 1000000; // начальный капитал $
     double tax_p = 0.09; // налог
     int demand_p = 25; // спрос (кол-во людей, которым нужна страховка)
     int period_p = 12; // месяцы игры
     int insurance_p = 25; // процент угрозы
     //================================================================================================================
     int now_capital = 0;
-    vector<pair<int, pair<int, int>>> journal; // (месяц, [тип страховки, сумма погашения])
+    vector<pair<int, pair<int, int>>> journal; // (сколько месяцев ост, [сколько надо заплатить в случае ситуации, сколько платит чел в месяц])
     //------------------------------------
     Button capital_b;
     capital_b.setPosition({10, 10});
@@ -161,7 +165,56 @@ int main() {
     num_month.setSize({144, 40});
     num_month.setText(to_string(month) + " month");
     //================================================================================================================
+    int risk_mon = 0;
+
+    Button person_risk;
+    person_risk.setPosition({301, 300});
+    person_risk.setSize({144, 40});
+    person_risk.setText(to_string(risk_mon));
+    //------------------------------------
+    Button name_risk;
+    name_risk.setPosition({57, 300});
+    name_risk.setSize({234, 40});
+    name_risk.setText("insurance pay");
+    //------------------------------------
+    int ll_pay = 0;
+
+    Button person_ll_pay;
+    person_ll_pay.setPosition({301, 350});
+    person_ll_pay.setSize({144, 40});
+    person_ll_pay.setText(to_string(ll_pay));
+    //------------------------------------
+    Button name_pay;
+    name_pay.setPosition({147, 350});
+    name_pay.setSize({144, 40});
+    name_pay.setText("will pay");
+    //------------------------------------
+    Button name_mon;
+    name_mon.setPosition({147, 400});
+    name_mon.setSize({144, 40});
+    name_mon.setText("how long");
+    //------------------------------------
+    int ll_mon = 0;
+
+    Button person_ll_mon;
+    person_ll_mon.setPosition({301, 400});
+    person_ll_mon.setSize({198, 40});
+    person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+    //------------------------------------
+    Button agree;
+    agree.setPosition({301, 600});
+    agree.setSize({54, 40});
+    agree.setText("yes");
+    //------------------------------------
+    Button not_agree;
+    not_agree.setPosition({365, 600});
+    not_agree.setSize({36, 40});
+    not_agree.setText("no");
+    //================================================================================================================
+
     string scene = "start_screen";
+
+    int k_new = rng() % (demand_p - 2) + 2;
 
     while (window.isOpen()) {
         if (scene == "start_screen") {
@@ -190,99 +243,106 @@ int main() {
                     window.close();
                 }
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                    if (capital_low.isPressed(window)) {
-                        capital_low.setColor(sf::Color::Red);
-                        capital_mid.setColor(sf::Color::Yellow);
-                        capital_high.setColor(sf::Color::Yellow);
-                        capital_p = 500000;
+                    //------------------------------------
+                    {
+                        if (capital_low.isPressed(window)) {
+                            capital_low.setColor(sf::Color::Red);
+                            capital_mid.setColor(sf::Color::Yellow);
+                            capital_high.setColor(sf::Color::Yellow);
+                            capital_p = 500000;
+                        } else if (capital_mid.isPressed(window)) {
+                            capital_low.setColor(sf::Color::Yellow);
+                            capital_mid.setColor(sf::Color::Red);
+                            capital_high.setColor(sf::Color::Yellow);
+                            capital_p = 1000000;
+                        } else if (capital_high.isPressed(window)) {
+                            capital_low.setColor(sf::Color::Yellow);
+                            capital_mid.setColor(sf::Color::Yellow);
+                            capital_high.setColor(sf::Color::Red);
+                            capital_p = 10000000;
+                        }
+                        if (tax_low.isPressed(window)) {
+                            tax_low.setColor(sf::Color::Red);
+                            tax_mid.setColor(sf::Color::Yellow);
+                            tax_high.setColor(sf::Color::Yellow);
+                            tax_p = 0.01;
+                        } else if (tax_mid.isPressed(window)) {
+                            tax_low.setColor(sf::Color::Yellow);
+                            tax_mid.setColor(sf::Color::Red);
+                            tax_high.setColor(sf::Color::Yellow);
+                            tax_p = 0.09;
+                        } else if (tax_high.isPressed(window)) {
+                            tax_low.setColor(sf::Color::Yellow);
+                            tax_mid.setColor(sf::Color::Yellow);
+                            tax_high.setColor(sf::Color::Red);
+                            tax_p = 0.18;
+                        }
+                        if (demand_low.isPressed(window)) {
+                            demand_low.setColor(sf::Color::Red);
+                            demand_mid.setColor(sf::Color::Yellow);
+                            demand_high.setColor(sf::Color::Yellow);
+                            demand_p = 5;
+                        } else if (demand_mid.isPressed(window)) {
+                            demand_low.setColor(sf::Color::Yellow);
+                            demand_mid.setColor(sf::Color::Red);
+                            demand_high.setColor(sf::Color::Yellow);
+                            demand_p = 25;
+                        } else if (demand_high.isPressed(window)) {
+                            demand_low.setColor(sf::Color::Yellow);
+                            demand_mid.setColor(sf::Color::Yellow);
+                            demand_high.setColor(sf::Color::Red);
+                            demand_p = 50;
+                        }
+                        if (period_low.isPressed(window)) {
+                            period_low.setColor(sf::Color::Red);
+                            period_mid.setColor(sf::Color::Yellow);
+                            period_high.setColor(sf::Color::Yellow);
+                            period_p = 6;
+                        } else if (period_mid.isPressed(window)) {
+                            period_low.setColor(sf::Color::Yellow);
+                            period_mid.setColor(sf::Color::Red);
+                            period_high.setColor(sf::Color::Yellow);
+                            period_p = 12;
+                        } else if (period_high.isPressed(window)) {
+                            period_low.setColor(sf::Color::Yellow);
+                            period_mid.setColor(sf::Color::Yellow);
+                            period_high.setColor(sf::Color::Red);
+                            period_p = 24;
+                        }
+                        if (insurance_low.isPressed(window)) {
+                            insurance_low.setColor(sf::Color::Red);
+                            insurance_mid.setColor(sf::Color::Yellow);
+                            insurance_high.setColor(sf::Color::Yellow);
+                            insurance_p = 10;
+                        } else if (insurance_mid.isPressed(window)) {
+                            insurance_low.setColor(sf::Color::Yellow);
+                            insurance_mid.setColor(sf::Color::Red);
+                            insurance_high.setColor(sf::Color::Yellow);
+                            insurance_p = 25;
+                        } else if (insurance_high.isPressed(window)) {
+                            insurance_low.setColor(sf::Color::Yellow);
+                            insurance_mid.setColor(sf::Color::Yellow);
+                            insurance_high.setColor(sf::Color::Red);
+                            insurance_p = 50;
+                        }
                     }
-                    else if (capital_mid.isPressed(window)) {
-                        capital_low.setColor(sf::Color::Yellow);
-                        capital_mid.setColor(sf::Color::Red);
-                        capital_high.setColor(sf::Color::Yellow);
-                        capital_p = 1000000;
-                    }
-                    else if (capital_high.isPressed(window)) {
-                        capital_low.setColor(sf::Color::Yellow);
-                        capital_mid.setColor(sf::Color::Yellow);
-                        capital_high.setColor(sf::Color::Red);
-                        capital_p = 10000000;
-                    }
-                    if (tax_low.isPressed(window)) {
-                        tax_low.setColor(sf::Color::Red);
-                        tax_mid.setColor(sf::Color::Yellow);
-                        tax_high.setColor(sf::Color::Yellow);
-                        tax_p = 0.01;
-                    }
-                    else if (tax_mid.isPressed(window)) {
-                        tax_low.setColor(sf::Color::Yellow);
-                        tax_mid.setColor(sf::Color::Red);
-                        tax_high.setColor(sf::Color::Yellow);
-                        tax_p = 0.09;
-                    }
-                    else if (tax_high.isPressed(window)) {
-                        tax_low.setColor(sf::Color::Yellow);
-                        tax_mid.setColor(sf::Color::Yellow);
-                        tax_high.setColor(sf::Color::Red);
-                        tax_p = 0.18;
-                    }
-                    if (demand_low.isPressed(window)) {
-                        demand_low.setColor(sf::Color::Red);
-                        demand_mid.setColor(sf::Color::Yellow);
-                        demand_high.setColor(sf::Color::Yellow);
-                        demand_p = 5;
-                    }
-                    else if (demand_mid.isPressed(window)) {
-                        demand_low.setColor(sf::Color::Yellow);
-                        demand_mid.setColor(sf::Color::Red);
-                        demand_high.setColor(sf::Color::Yellow);
-                        demand_p = 25;
-                    }
-                    else if (demand_high.isPressed(window)) {
-                        demand_low.setColor(sf::Color::Yellow);
-                        demand_mid.setColor(sf::Color::Yellow);
-                        demand_high.setColor(sf::Color::Red);
-                        demand_p = 50;
-                    }
-                    if (period_low.isPressed(window)) {
-                        period_low.setColor(sf::Color::Red);
-                        period_mid.setColor(sf::Color::Yellow);
-                        period_high.setColor(sf::Color::Yellow);
-                        period_p = 6;
-                    }
-                    else if (period_mid.isPressed(window)) {
-                        period_low.setColor(sf::Color::Yellow);
-                        period_mid.setColor(sf::Color::Red);
-                        period_high.setColor(sf::Color::Yellow);
-                        period_p = 12;
-                    }
-                    else if (period_high.isPressed(window)) {
-                        period_low.setColor(sf::Color::Yellow);
-                        period_mid.setColor(sf::Color::Yellow);
-                        period_high.setColor(sf::Color::Red);
-                        period_p = 24;
-                    }
-                    if (insurance_low.isPressed(window)) {
-                        insurance_low.setColor(sf::Color::Red);
-                        insurance_mid.setColor(sf::Color::Yellow);
-                        insurance_high.setColor(sf::Color::Yellow);
-                        insurance_p = 10;
-                    }
-                    else if (insurance_mid.isPressed(window)) {
-                        insurance_low.setColor(sf::Color::Yellow);
-                        insurance_mid.setColor(sf::Color::Red);
-                        insurance_high.setColor(sf::Color::Yellow);
-                        insurance_p = 25;
-                    }
-                    else if (insurance_high.isPressed(window)) {
-                        insurance_low.setColor(sf::Color::Yellow);
-                        insurance_mid.setColor(sf::Color::Yellow);
-                        insurance_high.setColor(sf::Color::Red);
-                        insurance_p = 50;
-                    }
+                    //------------------------------------
                     if (next.isPressed(window)) {
                         scene = "game_screen";
+
                         now_capital = capital_p;
+                        capital_b.setText(to_string(now_capital) + "$");
+
+                        risk_mon = 1000 * (rng() % 500 + 100);
+                        person_risk.setText(to_string(risk_mon) + "$");
+
+                        ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                        person_ll_pay.setText(to_string(ll_pay) + "$");
+
+                        ll_mon = rng() % (period_p) + 1;
+                        person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
+                        k_new = rng() % (demand_p - 2) + 2;
                     }
                 }
             }
@@ -344,16 +404,66 @@ int main() {
                     else if (next_month.isPressed(window)) {
                         ++month;
                         num_month.setText(to_string(month) + " month");
+
+                        k_new = rng() % (demand_p - 2) + 2;
+
+                        risk_mon = 1000 * (rng() % 500 + 100);
+                        person_risk.setText(to_string(risk_mon) + "$");
+
+                        ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                        person_ll_pay.setText(to_string(ll_pay) + "$");
+
+                        ll_mon = rng() % (period_p) + 1;
+                        person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+                    }
+                    if (k_new) {
+                        if (agree.isPressed(window)) {
+                            risk_mon = 1000 * (rng() % 500 + 100);
+                            person_risk.setText(to_string(risk_mon) + "$");
+
+                            ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                            person_ll_pay.setText(to_string(ll_pay) + "$");
+
+                            ll_mon = rng() % (period_p) + 1;
+                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
+                            --k_new;
+                        } else if (not_agree.isPressed(window)) {
+                            risk_mon = 1000 * (rng() % 500 + 100);
+                            person_risk.setText(to_string(risk_mon) + "$");
+
+                            ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                            person_ll_pay.setText(to_string(ll_pay) + "$");
+
+                            ll_mon = rng() % (period_p) + 1;
+                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
+                            --k_new;
+                        }
                     }
                 }
                 capital_b.setText(to_string(now_capital) + "$");
             }
 
             window.clear(sf::Color::White);
+
             capital_b.show(window);
             next_month.show(window);
             settings_b.show(window);
             num_month.show(window);
+
+            if (k_new) {
+                name_risk.show(window);
+                name_pay.show(window);
+                name_mon.show(window);
+
+                person_risk.show(window);
+                person_ll_pay.show(window);
+                person_ll_mon.show(window);
+                agree.show(window);
+                not_agree.show(window);
+            }
+
             window.display();
         }
     }

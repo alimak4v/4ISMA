@@ -10,6 +10,38 @@ using namespace std;
 
 mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
+class usrs {
+public:
+    void addUser(int months, int risk, int lpay) {
+        journal_.push_back({months, {risk, lpay}});
+        sort(journal_.begin(), journal_.end());
+    }
+
+    void nextMonth() {
+        vector<pair<int, pair<int, int>>> temp_journal;
+        for (int i = 0; i < journal_.size(); ++i) {
+            if (--journal_[i].first > 0) {
+                temp_journal.push_back(journal_[i]);
+            }
+        }
+        journal_ = temp_journal;
+    }
+
+    int check_var(int ins_p) {
+        int kr = 0; // how many should you pay
+
+        for (int i = 0; i < journal_.size(); ++i) {
+            if (rng() % 1000 < ins_p) {
+                kr -= journal_[i].second.first;
+            }
+        }
+
+        return kr;
+    }
+private:
+    vector<pair<int, pair<int, int>>> journal_; // months, risk, lpay
+};
+
 /*
  * ERRORS
  * 2000 - error with loading front
@@ -17,6 +49,12 @@ mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(720, 720), "");
+
+    int capital_p = 1000000; // начальный капитал $
+    double tax_p = 0.09; // налог
+    int demand_p = 25; // спрос (кол-во людей, которым нужна страховка)
+    int period_p = 12; // месяцы игры
+    int insurance_p = 25; // процент угрозы
 
     Button start;
     start.setPosition({315, 340});
@@ -134,19 +172,20 @@ int main() {
     next.setSize({72, 40});
     next.setText("next");
     //------------------------------------
-    int capital_p = 1000000; // начальный капитал $
-    double tax_p = 0.09; // налог
-    int demand_p = 25; // спрос (кол-во людей, которым нужна страховка)
-    int period_p = 12; // месяцы игры
-    int insurance_p = 25; // процент угрозы
     //================================================================================================================
     int now_capital = 0;
-    vector<pair<int, pair<int, int>>> journal; // (сколько месяцев ост, [сколько надо заплатить в случае ситуации, сколько платит чел в месяц])
+    usrs journal; // (сколько месяцев ост, [сколько надо заплатить в случае ситуации, сколько платит чел в месяц])
     //------------------------------------
     Button capital_b;
     capital_b.setPosition({10, 10});
     capital_b.setSize({180, 40});
     capital_b.setText(to_string(now_capital) + "$");
+    //------------------------------------
+    Button minus_b;
+    minus_b.setPosition({200, 10});
+    minus_b.setSize({180, 40});
+    minus_b.setText("-" + to_string(0) + "$");
+    minus_b.setColor(sf::Color::Red);
     //------------------------------------
     Button settings_b;
     settings_b.setPosition({566, 10});
@@ -168,36 +207,36 @@ int main() {
     int risk_mon = 0;
 
     Button person_risk;
-    person_risk.setPosition({301, 300});
+    person_risk.setPosition({501, 300});
     person_risk.setSize({144, 40});
     person_risk.setText(to_string(risk_mon));
     //------------------------------------
     Button name_risk;
-    name_risk.setPosition({57, 300});
-    name_risk.setSize({234, 40});
-    name_risk.setText("insurance pay");
+    name_risk.setPosition({347, 300});
+    name_risk.setSize({144, 40});
+    name_risk.setText("ins. pay");
     //------------------------------------
     int ll_pay = 0;
 
     Button person_ll_pay;
-    person_ll_pay.setPosition({301, 350});
+    person_ll_pay.setPosition({501, 350});
     person_ll_pay.setSize({144, 40});
     person_ll_pay.setText(to_string(ll_pay));
     //------------------------------------
     Button name_pay;
-    name_pay.setPosition({147, 350});
+    name_pay.setPosition({347, 350});
     name_pay.setSize({144, 40});
     name_pay.setText("will pay");
     //------------------------------------
     Button name_mon;
-    name_mon.setPosition({147, 400});
+    name_mon.setPosition({347, 400});
     name_mon.setSize({144, 40});
     name_mon.setText("how long");
     //------------------------------------
     int ll_mon = 0;
 
     Button person_ll_mon;
-    person_ll_mon.setPosition({301, 400});
+    person_ll_mon.setPosition({501, 400});
     person_ll_mon.setSize({198, 40});
     person_ll_mon.setText(to_string(ll_mon) + " month(s)");
     //------------------------------------
@@ -393,6 +432,8 @@ int main() {
         else if (scene == "game_screen") {
             sf::Event event{};
 
+            window.clear(sf::Color::White);
+
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed) {
                     window.close();
@@ -403,6 +444,14 @@ int main() {
                     }
                     else if (next_month.isPressed(window)) {
                         ++month;
+                        journal.nextMonth();
+
+                        int minus = journal.check_var(insurance_p);
+                        now_capital += minus;
+                        cout << minus << endl;
+                        minus_b.setText("-" + to_string(-minus) + "$");
+                        minus_b.show(window);
+
                         num_month.setText(to_string(month) + " month");
 
                         k_new = rng() % (demand_p - 2) + 2;
@@ -410,7 +459,7 @@ int main() {
                         risk_mon = 1000 * (rng() % 500 + 100);
                         person_risk.setText(to_string(risk_mon) + "$");
 
-                        ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                        ll_pay = risk_mon * 100.0 / ((rng() % 100) + 90);
                         person_ll_pay.setText(to_string(ll_pay) + "$");
 
                         ll_mon = rng() % (period_p) + 1;
@@ -428,6 +477,9 @@ int main() {
                             person_ll_mon.setText(to_string(ll_mon) + " month(s)");
 
                             --k_new;
+
+                            journal.addUser(ll_mon, risk_mon, ll_pay);
+                            now_capital += ll_pay;
                         } else if (not_agree.isPressed(window)) {
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
@@ -444,8 +496,6 @@ int main() {
                 }
                 capital_b.setText(to_string(now_capital) + "$");
             }
-
-            window.clear(sf::Color::White);
 
             capital_b.show(window);
             next_month.show(window);

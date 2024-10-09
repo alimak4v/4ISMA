@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <unistd.h>
 #include <utility>
 #include <string>
 #include <random>
 #include <chrono>
+#include <tuple>
 #include "Button.h"
 
 using namespace std;
@@ -12,15 +14,15 @@ mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
 class usrs {
 public:
-    void addUser(int months, int risk, int lpay) {
-        journal_.push_back({months, {risk, lpay}});
+    void addUser(int months, int risk, int lpay, string type) {
+        journal_.push_back({months, risk, lpay, type});
         sort(journal_.begin(), journal_.end());
     }
 
     void nextMonth() {
-        vector<pair<int, pair<int, int>>> temp_journal;
+        vector<tuple<int, int, int, string>> temp_journal;
         for (int i = 0; i < journal_.size(); ++i) {
-            if (--journal_[i].first > 0) {
+            if (--get<0>(journal_[i]) > 0) {
                 temp_journal.push_back(journal_[i]);
             }
         }
@@ -31,15 +33,20 @@ public:
         int kr = 0; // how many should you pay
 
         for (int i = 0; i < journal_.size(); ++i) {
-            if (rng() % 1000 < ins_p) {
-                kr -= journal_[i].second.first;
+            if (rng() % 300 < ins_p) {
+                kr -= get<1>(journal_[i]);
             }
         }
 
         return kr;
     }
+
+    string get_type(int index) {
+        return get<3>(journal_[index]);
+    }
 private:
-    vector<pair<int, pair<int, int>>> journal_; // months, risk, lpay
+    //           .f \.s.f\.s.s\ non
+    vector<tuple<int, int, int, string>> journal_; // type, months, risk, lpay
 };
 
 /*
@@ -50,6 +57,7 @@ private:
 int main() {
     sf::RenderWindow window(sf::VideoMode(720, 720), "");
 
+    double fps = 60.0;
     int capital_p = 1000000; // начальный капитал $
     double tax_p = 0.09; // налог
     int demand_p = 25; // спрос (кол-во людей, которым нужна страховка)
@@ -204,6 +212,23 @@ int main() {
     num_month.setSize({144, 40});
     num_month.setText(to_string(month) + " month");
     //================================================================================================================
+    string type_value = "";
+
+    Button person_type;
+    person_type.setPosition({347, 250});
+    person_type.setSize({360, 40});
+    int r = rng() % 3 + 1;
+    if (r == 1) {
+        type_value = "insurance for car";
+    }
+    else if (r == 2) {
+        type_value = "insurance for house";
+    }
+    else {
+        type_value = "insurance for health";
+    }
+    person_type.setText(type_value);
+    //------------------------------------
     int risk_mon = 0;
 
     Button person_risk;
@@ -250,7 +275,6 @@ int main() {
     not_agree.setSize({36, 40});
     not_agree.setText("no");
     //================================================================================================================
-
     string scene = "start_screen";
 
     int k_new = rng() % (demand_p - 2) + 2;
@@ -450,7 +474,6 @@ int main() {
                         now_capital += minus;
                         cout << minus << endl;
                         minus_b.setText("-" + to_string(-minus) + "$");
-                        minus_b.show(window);
 
                         num_month.setText(to_string(month) + " month");
 
@@ -459,7 +482,7 @@ int main() {
                         risk_mon = 1000 * (rng() % 500 + 100);
                         person_risk.setText(to_string(risk_mon) + "$");
 
-                        ll_pay = risk_mon * 100.0 / ((rng() % 100) + 90);
+                        ll_pay = 1.5 * risk_mon * 100.0 / ((rng() % 100) + 100);
                         person_ll_pay.setText(to_string(ll_pay) + "$");
 
                         ll_mon = rng() % (period_p) + 1;
@@ -467,28 +490,53 @@ int main() {
                     }
                     if (k_new) {
                         if (agree.isPressed(window)) {
+                            journal.addUser(ll_mon, risk_mon, ll_pay, type_value);
+                            now_capital += ll_pay;
+
+                            int r = rng() % 3 + 1;
+                            if (r == 1) {
+                                type_value = "insurance for car";
+                            }
+                            else if (r == 2) {
+                                type_value = "insurance for house";
+                            }
+                            else {
+                                type_value = "insurance for health";
+                            }
+                            person_type.setText(type_value);
+
+                            ll_mon = rng() % (period_p) + 1;
+                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
                             ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
-
-                            ll_mon = rng() % (period_p) + 1;
-                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
 
                             --k_new;
-
-                            journal.addUser(ll_mon, risk_mon, ll_pay);
-                            now_capital += ll_pay;
                         } else if (not_agree.isPressed(window)) {
+                            int r = rng() % 3 + 1;
+
+                            if (r == 1) {
+                                type_value = "insurance for car";
+                            }
+                            else if (r == 2) {
+                                type_value = "insurance for house";
+                            }
+                            else {
+                                type_value = "insurance for health";
+                            }
+                            person_type.setText(type_value);
+
+                            ll_mon = rng() % (period_p) + 1;
+                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
                             ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
-
-                            ll_mon = rng() % (period_p) + 1;
-                            person_ll_mon.setText(to_string(ll_mon) + " month(s)");
 
                             --k_new;
                         }
@@ -498,6 +546,7 @@ int main() {
             }
 
             capital_b.show(window);
+            minus_b.show(window);
             next_month.show(window);
             settings_b.show(window);
             num_month.show(window);
@@ -507,6 +556,7 @@ int main() {
                 name_pay.show(window);
                 name_mon.show(window);
 
+                person_type.show(window);
                 person_risk.show(window);
                 person_ll_pay.show(window);
                 person_ll_mon.show(window);
@@ -516,6 +566,7 @@ int main() {
 
             window.display();
         }
+        usleep(1000/fps);
     }
 
     return 0;

@@ -23,7 +23,10 @@
     <list default="true" id="382f2646-9d29-49e0-af2f-ffe19326eddc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/4isma" beforeDir="false" afterPath="$PROJECT_DIR$/4isma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/compiler_depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o.d" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/4isma.dir/main.cpp.o.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,11 +87,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -99,7 +97,8 @@
       <option name="presentableId" value="Default" />
       <updated>1727445907141</updated>
       <workItem from="1727445908693" duration="47665000" />
-      <workItem from="1727962359046" duration="6072000" />
+      <workItem from="1727962359046" duration="8183000" />
+      <workItem from="1728480962160" duration="4521000" />
     </task>
     <servers />
   </component>

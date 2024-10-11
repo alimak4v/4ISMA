@@ -10,6 +10,9 @@
 
 using namespace std;
 
+// сделать вывод челиков, у которых заканчивается страховка
+// добавить анимацию челика
+
 mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
 class usrs {
@@ -563,6 +566,7 @@ int main() {
                 agree.show(window);
                 not_agree.show(window);
             }
+
 
             window.display();
         }

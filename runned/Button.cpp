@@ -5,11 +5,11 @@
 #include <iostream>
 #include <utility>
 #include <string>
-#include "Button.h"
+#include "../include/Button.h"
 
 Button::Button() {
     rectangle_.setFillColor(sf::Color::White);
-    if (!font_.loadFromFile("PTMono.ttc")) {
+    if (!font_.loadFromFile("imported/PTMono.ttc")) {
         exit(2000);
     }
     text_.setFont(font_);

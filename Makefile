@@ -129,30 +129,6 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/build
 .PHONY : 4isma/fast
 
-Button.o: Button.cpp.o
-.PHONY : Button.o
-
-# target to build an object file
-Button.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/Button.cpp.o
-.PHONY : Button.cpp.o
-
-Button.i: Button.cpp.i
-.PHONY : Button.i
-
-# target to preprocess a source file
-Button.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/Button.cpp.i
-.PHONY : Button.cpp.i
-
-Button.s: Button.cpp.s
-.PHONY : Button.s
-
-# target to generate assembly for a file
-Button.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/Button.cpp.s
-.PHONY : Button.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -177,6 +153,78 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+runned/Button.o: runned/Button.cpp.o
+.PHONY : runned/Button.o
+
+# target to build an object file
+runned/Button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/Button.cpp.o
+.PHONY : runned/Button.cpp.o
+
+runned/Button.i: runned/Button.cpp.i
+.PHONY : runned/Button.i
+
+# target to preprocess a source file
+runned/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/Button.cpp.i
+.PHONY : runned/Button.cpp.i
+
+runned/Button.s: runned/Button.cpp.s
+.PHONY : runned/Button.s
+
+# target to generate assembly for a file
+runned/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/Button.cpp.s
+.PHONY : runned/Button.cpp.s
+
+runned/insur.o: runned/insur.cpp.o
+.PHONY : runned/insur.o
+
+# target to build an object file
+runned/insur.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/insur.cpp.o
+.PHONY : runned/insur.cpp.o
+
+runned/insur.i: runned/insur.cpp.i
+.PHONY : runned/insur.i
+
+# target to preprocess a source file
+runned/insur.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/insur.cpp.i
+.PHONY : runned/insur.cpp.i
+
+runned/insur.s: runned/insur.cpp.s
+.PHONY : runned/insur.s
+
+# target to generate assembly for a file
+runned/insur.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/insur.cpp.s
+.PHONY : runned/insur.cpp.s
+
+runned/usrs.o: runned/usrs.cpp.o
+.PHONY : runned/usrs.o
+
+# target to build an object file
+runned/usrs.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/usrs.cpp.o
+.PHONY : runned/usrs.cpp.o
+
+runned/usrs.i: runned/usrs.cpp.i
+.PHONY : runned/usrs.i
+
+# target to preprocess a source file
+runned/usrs.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/usrs.cpp.i
+.PHONY : runned/usrs.cpp.i
+
+runned/usrs.s: runned/usrs.cpp.s
+.PHONY : runned/usrs.s
+
+# target to generate assembly for a file
+runned/usrs.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/4isma.dir/build.make CMakeFiles/4isma.dir/runned/usrs.cpp.s
+.PHONY : runned/usrs.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... 4isma"
-	@echo "... Button.o"
-	@echo "... Button.i"
-	@echo "... Button.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... runned/Button.o"
+	@echo "... runned/Button.i"
+	@echo "... runned/Button.s"
+	@echo "... runned/insur.o"
+	@echo "... runned/insur.i"
+	@echo "... runned/insur.s"
+	@echo "... runned/usrs.o"
+	@echo "... runned/usrs.i"
+	@echo "... runned/usrs.s"
 .PHONY : help
 
 

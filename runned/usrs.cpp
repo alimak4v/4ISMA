@@ -8,9 +8,9 @@
 #include <random>
 #include <chrono>
 #include <tuple>
-#include "Button.h"
-#include "insur.h"
-#include "usrs.h"
+#include "../include/Button.h"
+#include "../include/insur.h"
+#include "../include/usrs.h"
 
 static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 

@@ -8,8 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/sinicynaleksej/4ISMA/Button.cpp" "CMakeFiles/4isma.dir/Button.cpp.o" "gcc" "CMakeFiles/4isma.dir/Button.cpp.o.d"
   "/Users/sinicynaleksej/4ISMA/main.cpp" "CMakeFiles/4isma.dir/main.cpp.o" "gcc" "CMakeFiles/4isma.dir/main.cpp.o.d"
+  "/Users/sinicynaleksej/4ISMA/runned/Button.cpp" "CMakeFiles/4isma.dir/runned/Button.cpp.o" "gcc" "CMakeFiles/4isma.dir/runned/Button.cpp.o.d"
+  "/Users/sinicynaleksej/4ISMA/runned/insur.cpp" "CMakeFiles/4isma.dir/runned/insur.cpp.o" "gcc" "CMakeFiles/4isma.dir/runned/insur.cpp.o.d"
+  "/Users/sinicynaleksej/4ISMA/runned/usrs.cpp" "CMakeFiles/4isma.dir/runned/usrs.cpp.o" "gcc" "CMakeFiles/4isma.dir/runned/usrs.cpp.o.d"
   )
 
 # Targets to which this target links.

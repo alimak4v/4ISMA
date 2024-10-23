@@ -83,30 +83,62 @@ CMakeFiles/4isma.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/4isma.dir/main.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sinicynaleksej/4ISMA/main.cpp -o CMakeFiles/4isma.dir/main.cpp.s
 
-CMakeFiles/4isma.dir/Button.cpp.o: CMakeFiles/4isma.dir/flags.make
-CMakeFiles/4isma.dir/Button.cpp.o: Button.cpp
-CMakeFiles/4isma.dir/Button.cpp.o: CMakeFiles/4isma.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/4isma.dir/Button.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/4isma.dir/Button.cpp.o -MF CMakeFiles/4isma.dir/Button.cpp.o.d -o CMakeFiles/4isma.dir/Button.cpp.o -c /Users/sinicynaleksej/4ISMA/Button.cpp
+CMakeFiles/4isma.dir/runned/Button.cpp.o: CMakeFiles/4isma.dir/flags.make
+CMakeFiles/4isma.dir/runned/Button.cpp.o: runned/Button.cpp
+CMakeFiles/4isma.dir/runned/Button.cpp.o: CMakeFiles/4isma.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/4isma.dir/runned/Button.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/4isma.dir/runned/Button.cpp.o -MF CMakeFiles/4isma.dir/runned/Button.cpp.o.d -o CMakeFiles/4isma.dir/runned/Button.cpp.o -c /Users/sinicynaleksej/4ISMA/runned/Button.cpp
 
-CMakeFiles/4isma.dir/Button.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/4isma.dir/Button.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/sinicynaleksej/4ISMA/Button.cpp > CMakeFiles/4isma.dir/Button.cpp.i
+CMakeFiles/4isma.dir/runned/Button.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/4isma.dir/runned/Button.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/sinicynaleksej/4ISMA/runned/Button.cpp > CMakeFiles/4isma.dir/runned/Button.cpp.i
 
-CMakeFiles/4isma.dir/Button.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/4isma.dir/Button.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sinicynaleksej/4ISMA/Button.cpp -o CMakeFiles/4isma.dir/Button.cpp.s
+CMakeFiles/4isma.dir/runned/Button.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/4isma.dir/runned/Button.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sinicynaleksej/4ISMA/runned/Button.cpp -o CMakeFiles/4isma.dir/runned/Button.cpp.s
+
+CMakeFiles/4isma.dir/runned/insur.cpp.o: CMakeFiles/4isma.dir/flags.make
+CMakeFiles/4isma.dir/runned/insur.cpp.o: runned/insur.cpp
+CMakeFiles/4isma.dir/runned/insur.cpp.o: CMakeFiles/4isma.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/4isma.dir/runned/insur.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/4isma.dir/runned/insur.cpp.o -MF CMakeFiles/4isma.dir/runned/insur.cpp.o.d -o CMakeFiles/4isma.dir/runned/insur.cpp.o -c /Users/sinicynaleksej/4ISMA/runned/insur.cpp
+
+CMakeFiles/4isma.dir/runned/insur.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/4isma.dir/runned/insur.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/sinicynaleksej/4ISMA/runned/insur.cpp > CMakeFiles/4isma.dir/runned/insur.cpp.i
+
+CMakeFiles/4isma.dir/runned/insur.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/4isma.dir/runned/insur.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sinicynaleksej/4ISMA/runned/insur.cpp -o CMakeFiles/4isma.dir/runned/insur.cpp.s
+
+CMakeFiles/4isma.dir/runned/usrs.cpp.o: CMakeFiles/4isma.dir/flags.make
+CMakeFiles/4isma.dir/runned/usrs.cpp.o: runned/usrs.cpp
+CMakeFiles/4isma.dir/runned/usrs.cpp.o: CMakeFiles/4isma.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/4isma.dir/runned/usrs.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/4isma.dir/runned/usrs.cpp.o -MF CMakeFiles/4isma.dir/runned/usrs.cpp.o.d -o CMakeFiles/4isma.dir/runned/usrs.cpp.o -c /Users/sinicynaleksej/4ISMA/runned/usrs.cpp
+
+CMakeFiles/4isma.dir/runned/usrs.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/4isma.dir/runned/usrs.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/sinicynaleksej/4ISMA/runned/usrs.cpp > CMakeFiles/4isma.dir/runned/usrs.cpp.i
+
+CMakeFiles/4isma.dir/runned/usrs.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/4isma.dir/runned/usrs.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sinicynaleksej/4ISMA/runned/usrs.cpp -o CMakeFiles/4isma.dir/runned/usrs.cpp.s
 
 # Object files for target 4isma
 4isma_OBJECTS = \
 "CMakeFiles/4isma.dir/main.cpp.o" \
-"CMakeFiles/4isma.dir/Button.cpp.o"
+"CMakeFiles/4isma.dir/runned/Button.cpp.o" \
+"CMakeFiles/4isma.dir/runned/insur.cpp.o" \
+"CMakeFiles/4isma.dir/runned/usrs.cpp.o"
 
 # External object files for target 4isma
 4isma_EXTERNAL_OBJECTS =
 
 4isma: CMakeFiles/4isma.dir/main.cpp.o
-4isma: CMakeFiles/4isma.dir/Button.cpp.o
+4isma: CMakeFiles/4isma.dir/runned/Button.cpp.o
+4isma: CMakeFiles/4isma.dir/runned/insur.cpp.o
+4isma: CMakeFiles/4isma.dir/runned/usrs.cpp.o
 4isma: CMakeFiles/4isma.dir/build.make
 4isma: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-graphics.2.6.1.dylib
 4isma: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-network.2.6.1.dylib
@@ -114,7 +146,7 @@ CMakeFiles/4isma.dir/Button.cpp.s: cmake_force
 4isma: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-window.2.6.1.dylib
 4isma: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-system.2.6.1.dylib
 4isma: CMakeFiles/4isma.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable 4isma"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/sinicynaleksej/4ISMA/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable 4isma"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/4isma.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

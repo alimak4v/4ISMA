@@ -6,51 +6,17 @@
 #include <random>
 #include <chrono>
 #include <tuple>
-#include "Button.h"
+
+static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+
+#include "include/Button.h"
+#include "include/insur.h"
+#include "include/usrs.h"
 
 using namespace std;
 
 // сделать вывод челиков, у которых заканчивается страховка
 // добавить анимацию челика
-
-mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-
-class usrs {
-public:
-    void addUser(int months, int risk, int lpay, string type) {
-        journal_.push_back({months, risk, lpay, type});
-        sort(journal_.begin(), journal_.end());
-    }
-
-    void nextMonth() {
-        vector<tuple<int, int, int, string>> temp_journal;
-        for (int i = 0; i < journal_.size(); ++i) {
-            if (--get<0>(journal_[i]) > 0) {
-                temp_journal.push_back(journal_[i]);
-            }
-        }
-        journal_ = temp_journal;
-    }
-
-    int check_var(int ins_p) {
-        int kr = 0; // how many should you pay
-
-        for (int i = 0; i < journal_.size(); ++i) {
-            if (rng() % 300 < ins_p) {
-                kr -= get<1>(journal_[i]);
-            }
-        }
-
-        return kr;
-    }
-
-    string get_type(int index) {
-        return get<3>(journal_[index]);
-    }
-private:
-    //           .f \.s.f\.s.s\ non
-    vector<tuple<int, int, int, string>> journal_; // type, months, risk, lpay
-};
 
 /*
  * ERRORS
@@ -67,16 +33,19 @@ int main() {
     int period_p = 12; // месяцы игры
     int insurance_p = 25; // процент угрозы
 
+    vector<int> stat_money;
+
     Button start;
     start.setPosition({315, 340});
     start.setSize({90, 40});
     start.setText("start");
-
+    start.setColor(sf::Color::Green);
     //================================================================================================================
     Button capital;
     capital.setPosition({133, 100});
     capital.setSize({126, 40});
     capital.setText("capital");
+    capital.setColor(sf::Color::Yellow);
 
     Button capital_low;
     capital_low.setPosition({333, 100});
@@ -98,6 +67,7 @@ int main() {
     tax.setPosition({133, 150});
     tax.setSize({54, 40});
     tax.setText("tax");
+    tax.setColor(sf::Color::Yellow);
 
     Button tax_low;
     tax_low.setPosition({333, 150});
@@ -119,6 +89,7 @@ int main() {
     demand.setPosition({133, 200});
     demand.setSize({108, 40});
     demand.setText("demand");
+    demand.setColor(sf::Color::Yellow);
 
     Button demand_low;
     demand_low.setPosition({333, 200});
@@ -140,6 +111,7 @@ int main() {
     period.setPosition({133, 250});
     period.setSize({108, 40});
     period.setText("period");
+    period.setColor(sf::Color::Yellow);
 
     Button period_low;
     period_low.setPosition({333, 250});
@@ -161,6 +133,7 @@ int main() {
     insurance.setPosition({133, 300});
     insurance.setSize({180, 40});
     insurance.setText("%insurance");
+    insurance.setColor(sf::Color::Yellow);
 
     Button insurance_low;
     insurance_low.setPosition({333, 300});
@@ -182,6 +155,7 @@ int main() {
     next.setPosition({324, 350});
     next.setSize({72, 40});
     next.setText("next");
+    next.setColor(sf::Color::Green);
     //------------------------------------
     //================================================================================================================
     int now_capital = 0;
@@ -191,6 +165,7 @@ int main() {
     capital_b.setPosition({10, 10});
     capital_b.setSize({180, 40});
     capital_b.setText(to_string(now_capital) + "$");
+    capital_b.setColor(sf::Color::Yellow);
     //------------------------------------
     Button minus_b;
     minus_b.setPosition({200, 10});
@@ -202,11 +177,13 @@ int main() {
     settings_b.setPosition({566, 10});
     settings_b.setSize({144, 40});
     settings_b.setText("settings");
+    settings_b.setColor(sf::Color::Yellow);
     //------------------------------------
     Button next_month;
     next_month.setPosition({530, 60});
     next_month.setSize({180, 40});
     next_month.setText("next month");
+    next_month.setColor(sf::Color::Yellow);
     //------------------------------------
     int month = 0;
 
@@ -214,6 +191,7 @@ int main() {
     num_month.setPosition({10, 60});
     num_month.setSize({144, 40});
     num_month.setText(to_string(month) + " month");
+    num_month.setColor(sf::Color::Yellow);
     //================================================================================================================
     string type_value = "";
 
@@ -272,15 +250,20 @@ int main() {
     agree.setPosition({301, 600});
     agree.setSize({54, 40});
     agree.setText("yes");
+    agree.setColor(sf::Color::Green);
     //------------------------------------
     Button not_agree;
     not_agree.setPosition({365, 600});
     not_agree.setSize({36, 40});
     not_agree.setText("no");
+    not_agree.setColor(sf::Color::Red);
     //================================================================================================================
     string scene = "start_screen";
 
     int k_new = rng() % (demand_p - 2) + 2;
+
+    int pribil = 0;
+    int frame = 0;
 
     while (window.isOpen()) {
         if (scene == "start_screen") {
@@ -313,83 +296,83 @@ int main() {
                     {
                         if (capital_low.isPressed(window)) {
                             capital_low.setColor(sf::Color::Red);
-                            capital_mid.setColor(sf::Color::Yellow);
-                            capital_high.setColor(sf::Color::Yellow);
+                            capital_mid.setColor(sf::Color::White);
+                            capital_high.setColor(sf::Color::White);
                             capital_p = 500000;
                         } else if (capital_mid.isPressed(window)) {
-                            capital_low.setColor(sf::Color::Yellow);
+                            capital_low.setColor(sf::Color::White);
                             capital_mid.setColor(sf::Color::Red);
-                            capital_high.setColor(sf::Color::Yellow);
+                            capital_high.setColor(sf::Color::White);
                             capital_p = 1000000;
                         } else if (capital_high.isPressed(window)) {
-                            capital_low.setColor(sf::Color::Yellow);
-                            capital_mid.setColor(sf::Color::Yellow);
+                            capital_low.setColor(sf::Color::White);
+                            capital_mid.setColor(sf::Color::White);
                             capital_high.setColor(sf::Color::Red);
                             capital_p = 10000000;
                         }
                         if (tax_low.isPressed(window)) {
                             tax_low.setColor(sf::Color::Red);
-                            tax_mid.setColor(sf::Color::Yellow);
-                            tax_high.setColor(sf::Color::Yellow);
-                            tax_p = 0.01;
+                            tax_mid.setColor(sf::Color::White);
+                            tax_high.setColor(sf::Color::White);
+                            tax_p = 0.03;
                         } else if (tax_mid.isPressed(window)) {
-                            tax_low.setColor(sf::Color::Yellow);
+                            tax_low.setColor(sf::Color::White);
                             tax_mid.setColor(sf::Color::Red);
-                            tax_high.setColor(sf::Color::Yellow);
-                            tax_p = 0.09;
+                            tax_high.setColor(sf::Color::White);
+                            tax_p = 0.13;
                         } else if (tax_high.isPressed(window)) {
-                            tax_low.setColor(sf::Color::Yellow);
-                            tax_mid.setColor(sf::Color::Yellow);
+                            tax_low.setColor(sf::Color::White);
+                            tax_mid.setColor(sf::Color::White);
                             tax_high.setColor(sf::Color::Red);
-                            tax_p = 0.18;
+                            tax_p = 0.25;
                         }
                         if (demand_low.isPressed(window)) {
                             demand_low.setColor(sf::Color::Red);
-                            demand_mid.setColor(sf::Color::Yellow);
-                            demand_high.setColor(sf::Color::Yellow);
+                            demand_mid.setColor(sf::Color::White);
+                            demand_high.setColor(sf::Color::White);
                             demand_p = 5;
                         } else if (demand_mid.isPressed(window)) {
-                            demand_low.setColor(sf::Color::Yellow);
+                            demand_low.setColor(sf::Color::White);
                             demand_mid.setColor(sf::Color::Red);
-                            demand_high.setColor(sf::Color::Yellow);
+                            demand_high.setColor(sf::Color::White);
                             demand_p = 25;
                         } else if (demand_high.isPressed(window)) {
-                            demand_low.setColor(sf::Color::Yellow);
-                            demand_mid.setColor(sf::Color::Yellow);
+                            demand_low.setColor(sf::Color::White);
+                            demand_mid.setColor(sf::Color::White);
                             demand_high.setColor(sf::Color::Red);
                             demand_p = 50;
                         }
                         if (period_low.isPressed(window)) {
                             period_low.setColor(sf::Color::Red);
-                            period_mid.setColor(sf::Color::Yellow);
-                            period_high.setColor(sf::Color::Yellow);
+                            period_mid.setColor(sf::Color::White);
+                            period_high.setColor(sf::Color::White);
                             period_p = 6;
                         } else if (period_mid.isPressed(window)) {
-                            period_low.setColor(sf::Color::Yellow);
+                            period_low.setColor(sf::Color::White);
                             period_mid.setColor(sf::Color::Red);
-                            period_high.setColor(sf::Color::Yellow);
+                            period_high.setColor(sf::Color::White);
                             period_p = 12;
                         } else if (period_high.isPressed(window)) {
-                            period_low.setColor(sf::Color::Yellow);
-                            period_mid.setColor(sf::Color::Yellow);
+                            period_low.setColor(sf::Color::White);
+                            period_mid.setColor(sf::Color::White);
                             period_high.setColor(sf::Color::Red);
                             period_p = 24;
                         }
                         if (insurance_low.isPressed(window)) {
                             insurance_low.setColor(sf::Color::Red);
-                            insurance_mid.setColor(sf::Color::Yellow);
-                            insurance_high.setColor(sf::Color::Yellow);
-                            insurance_p = 10;
+                            insurance_mid.setColor(sf::Color::White);
+                            insurance_high.setColor(sf::Color::White);
+                            insurance_p = 15;
                         } else if (insurance_mid.isPressed(window)) {
-                            insurance_low.setColor(sf::Color::Yellow);
+                            insurance_low.setColor(sf::Color::White);
                             insurance_mid.setColor(sf::Color::Red);
-                            insurance_high.setColor(sf::Color::Yellow);
-                            insurance_p = 25;
+                            insurance_high.setColor(sf::Color::White);
+                            insurance_p = 30;
                         } else if (insurance_high.isPressed(window)) {
-                            insurance_low.setColor(sf::Color::Yellow);
-                            insurance_mid.setColor(sf::Color::Yellow);
+                            insurance_low.setColor(sf::Color::White);
+                            insurance_mid.setColor(sf::Color::White);
                             insurance_high.setColor(sf::Color::Red);
-                            insurance_p = 50;
+                            insurance_p = 90;
                         }
                     }
                     //------------------------------------
@@ -461,6 +444,10 @@ int main() {
 
             window.clear(sf::Color::White);
 
+            if (month >= period_p) {
+                scene = "statistic_screen";
+            }
+
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed) {
                     window.close();
@@ -471,10 +458,14 @@ int main() {
                     }
                     else if (next_month.isPressed(window)) {
                         ++month;
+                        stat_money.push_back(pribil);
+                        pribil = 0;
                         journal.nextMonth();
 
                         int minus = journal.check_var(insurance_p);
                         now_capital += minus;
+                        pribil += minus;
+                        now_capital -= now_capital * tax_p;
                         cout << minus << endl;
                         minus_b.setText("-" + to_string(-minus) + "$");
 
@@ -490,13 +481,16 @@ int main() {
 
                         ll_mon = rng() % (period_p) + 1;
                         person_ll_mon.setText(to_string(ll_mon) + " month(s)");
+
+
                     }
                     if (k_new) {
                         if (agree.isPressed(window)) {
                             journal.addUser(ll_mon, risk_mon, ll_pay, type_value);
                             now_capital += ll_pay;
+                            pribil += ll_pay;
 
-                            int r = rng() % 3 + 1;
+                            r = rng() % 3 + 1;
                             if (r == 1) {
                                 type_value = "insurance for car";
                             }
@@ -514,12 +508,12 @@ int main() {
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
-                            ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                            ll_pay = risk_mon * 100.0 / ((rng() % 80) + 100);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
 
                             --k_new;
                         } else if (not_agree.isPressed(window)) {
-                            int r = rng() % 3 + 1;
+                            r = rng() % 3 + 1;
 
                             if (r == 1) {
                                 type_value = "insurance for car";
@@ -538,7 +532,7 @@ int main() {
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
-                            ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                            ll_pay = risk_mon * 100.0 / ((rng() % 80) + 100);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
 
                             --k_new;
@@ -567,10 +561,29 @@ int main() {
                 not_agree.show(window);
             }
 
-
             window.display();
         }
+        else if (scene == "statistic_screen") {
+            sf::Event event{};
+
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+            }
+
+            window.clear(sf::Color::White);
+            window.display();
+
+            if (frame <= 1000) {
+                ++frame;
+            }
+        }
         usleep(1000/fps);
+    }
+
+    for (auto el : stat_money) {
+        cout << el << " ";
     }
 
     return 0;

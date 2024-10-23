@@ -2,7 +2,7 @@
 // Created by Синицын Алексей on 23.10.2024.
 //
 
-#include "insur.h"
+#include "../include/insur.h"
 #include <iostream>
 #include <unistd.h>
 #include <utility>

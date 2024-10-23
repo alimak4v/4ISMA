@@ -8,7 +8,7 @@
 #include "Button.h"
 
 Button::Button() {
-    rectangle_.setFillColor(sf::Color::Yellow);
+    rectangle_.setFillColor(sf::Color::White);
     if (!font_.loadFromFile("PTMono.ttc")) {
         exit(2000);
     }

@@ -20,7 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="382f2646-9d29-49e0-af2f-ffe19326eddc" name="Changes" comment="" />
+    <list default="true" id="382f2646-9d29-49e0-af2f-ffe19326eddc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +97,7 @@
       <workItem from="1727445908693" duration="47665000" />
       <workItem from="1727962359046" duration="8183000" />
       <workItem from="1728480962160" duration="15214000" />
-      <workItem from="1729632607826" duration="6848000" />
+      <workItem from="1729632607826" duration="7331000" />
     </task>
     <servers />
   </component>

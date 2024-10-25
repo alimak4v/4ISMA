@@ -1,40 +1,51 @@
-![Снимок экрана 2024-10-23 в 09.46.24.png](imported%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-23%20%D0%B2%2009.46.24.png)
+# Insurance company management model
 
-# Модель управления страховой компанией
+The article considers the work of an insurance company that provides insurance for the population in three areas (types of insurance): home insurance, car insurance and health insurance.
 
-Рассматривается работа страховой компании, выполняющей страхование населения по трем направлениям (видам страховок): страхование жилища, страхование автомобиля и страхование здоровья.
+The game simulates the work of an insurance company. The modeling step is one month, it includes the following operations:
+1. payment of a permanent tax to the state on the total capital of the company
+2. sale of all types of insurance to the public
+3. payment of insurance amounts to the population according to insured events,
+   what happened this month
+4. Determining the terms of new insurance for the following months (the player must reject/accept the terms of people's applications)
 
-Игра моделирует работу страховой компании. Шаг моделирования – один месяц, он включает следующие операции:
-1. выплата государству постоянного налога на общий капитал компании
-2. продажа населению всех видов страховок
-3. выплата населению страховых сумм согласно страховым случаям,
-   произошедшим в текущем месяце
-4. определение на последующие месяцы условий новых страховок (игроку необходимо отклонять/принимать условия заявок людей)
+**The purpose** is to identify insurance conditions that allow to increase its total capital.
 
-**Цель** – выявление условий страхования, позволяющих наращивать ее общий капитал.
+**class usrs** (contains information about signed contracts)
 
-**class usrs** (содержит информацию о подписанных договорах)
+public:
+- addUser – adding the policyholder to the journal
+- nextMonth – deletion from the insurance log with a completed contract
+- check_var – payment for insured accidents
+- get_type – type of insurance
 
-   public:
-- addUser – добавление страхователя в журнал
-- nextMonth – удаление из журнала страховок с завершенным договором
-- check_var – оплата застрахованных несчастных случаев
-- get_type – тип страховки
+  private:
+- journal_ - vector of valid insurance, contains information about the type of insurance, duration of the contract, payment for an accident and the amount paid by the policyholder per month
 
-   private:
-- journal_ - вектор действующих страховок, содержит информацию о типе страховки, длительности договора, выплате за несчастный случай и сумме, которую оплачивает страхователь в месяц
+**class Button** (working with buttons in the window)
 
-**class Button** (работа с кнопками в окне)
+public:
+- setPosition – setting coordinates
+- setText – setting the label
+- setSize – setting the size
+- show – rendering
+- IsPressed – click detection
+- setColor – setting the color
 
-   public:
-- setPosition – установка координат
-- setText – установка надписи
-- setSize – установка размера
-- show – отрисовка
-- isPressed – определение нажатия 
-- setColor – установка цвета
+  private:
+- rectangle_ - rectangle
+- font_ - font of the text
+- text_ - text
 
-   private:
-- rectangle_ - прямоугольник
-- font_ - шрифт текста
-- text_ - текст
+The whole game is divided into scenes:
+-Start
+![start.png](imported%2Fstart.png)
+-settings
+![settings.png](imported%2Fsettings.png)
+-the gameplay itself
+![game.png](imported%2Fgame.png)
+-statistics window
+![static.png](imported%2Fstatic.png)
+
+
+class usrs is a child class of the insur class

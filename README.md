@@ -1,3 +1,4 @@
+![Снимок экрана 2024-10-23 в 09.46.24.png](imported%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-23%20%D0%B2%2009.46.24.png)
 # Insurance company management model
 
 The article considers the work of an insurance company that provides insurance for the population in three areas (types of insurance): home insurance, car insurance and health insurance.

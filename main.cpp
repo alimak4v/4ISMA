@@ -578,7 +578,7 @@ int main() {
             sf::RectangleShape rectangle;
             for (int i = 0; i < stat_money.size(); ++i) {
                 rectangle.setPosition({static_cast<float>(20 + i*680.0/period_p), 360});
-                rectangle.setSize({static_cast<float>(680.0/period_p), -static_cast<float>((stat_money[i] / abs(stat_money[i])) * min(frame, abs(stat_money[i]) / 25000.0f))});
+                rectangle.setSize({static_cast<float>(680.0/period_p - 10), -static_cast<float>((stat_money[i] / abs(stat_money[i])) * min(frame, abs(stat_money[i]) / 25000.0f))});
                 if ((stat_money[i] / abs(stat_money[i])) >= 0) {
                     rectangle.setFillColor(sf::Color::Green);
                 }
@@ -587,6 +587,11 @@ int main() {
                 }
                 window.draw(rectangle);
             }
+
+            rectangle.setPosition({20.0, 360.0});
+            rectangle.setSize({670.0, 2.0});
+            rectangle.setFillColor(sf::Color::Black);
+            window.draw(rectangle);
 
             window.display();
 

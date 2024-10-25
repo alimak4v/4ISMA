@@ -50,3 +50,45 @@ The whole game is divided into scenes:
 
 
 class usrs is a child class of the insur class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Report:
+Statistics for recent launches by month (profit):
+- 6993394 -626000 -634000 0 -127000 -123000
+- 569000 0 505414 0 1047376 0
+- 4537000 3372000 0 2342000 1234214 2344000
+- 569000 0 505414 0 1047376 0
+
+
+Settings:
+- capital    (low : 500.000$ | middle : 1.000.000$ | high : 5.000.000$)
+- tax        (low : 2% | middle : 13% | middle : 30%)
+- demand     (low : 5ppl | middle : 10ppl | high : 20ppl)
+- period     (low : 6 months | midlle : 12 months | high : 24 months)
+- insurance  (low : 1% | middle : 10% | high : 50%)
+
+Game screen:
+- In the game by random you can agree with the insurance for car/house/health
+- Insurance pay : how much you must pay in insurance case
+- Will pay : hou much you'l get
+- How long : duration of insurance

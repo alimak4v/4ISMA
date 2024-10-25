@@ -263,7 +263,8 @@ int main() {
     int k_new = rng() % (demand_p - 2) + 2;
 
     int pribil = 0;
-    int frame = 0;
+    float frame = 0;
+
 
     while (window.isOpen()) {
         if (scene == "start_screen") {
@@ -385,7 +386,7 @@ int main() {
                         risk_mon = 1000 * (rng() % 500 + 100);
                         person_risk.setText(to_string(risk_mon) + "$");
 
-                        ll_pay = risk_mon * 100.0 / ((rng() % 50) + 90);
+                        ll_pay = risk_mon * 100.0 / ((rng() % 100) + 100);
                         person_ll_pay.setText(to_string(ll_pay) + "$");
 
                         ll_mon = rng() % (period_p) + 1;
@@ -476,7 +477,7 @@ int main() {
                         risk_mon = 1000 * (rng() % 500 + 100);
                         person_risk.setText(to_string(risk_mon) + "$");
 
-                        ll_pay = 1.5 * risk_mon * 100.0 / ((rng() % 100) + 100);
+                        ll_pay = risk_mon * 100.0 / ((rng() % 100) + 100);
                         person_ll_pay.setText(to_string(ll_pay) + "$");
 
                         ll_mon = rng() % (period_p) + 1;
@@ -508,7 +509,7 @@ int main() {
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
-                            ll_pay = risk_mon * 100.0 / ((rng() % 80) + 100);
+                            ll_pay = risk_mon * 100.0 / ((rng() % 100) + 100);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
 
                             --k_new;
@@ -532,7 +533,7 @@ int main() {
                             risk_mon = 1000 * (rng() % 500 + 100);
                             person_risk.setText(to_string(risk_mon) + "$");
 
-                            ll_pay = risk_mon * 100.0 / ((rng() % 80) + 100);
+                            ll_pay = risk_mon * 100.0 / ((rng() % 100) + 100);
                             person_ll_pay.setText(to_string(ll_pay) + "$");
 
                             --k_new;
@@ -573,10 +574,24 @@ int main() {
             }
 
             window.clear(sf::Color::White);
+
+            sf::RectangleShape rectangle;
+            for (int i = 0; i < stat_money.size(); ++i) {
+                rectangle.setPosition({static_cast<float>(20 + i*680.0/period_p), 360});
+                rectangle.setSize({static_cast<float>(680.0/period_p), -static_cast<float>((stat_money[i] / abs(stat_money[i])) * min(frame, abs(stat_money[i]) / 25000.0f))});
+                if ((stat_money[i] / abs(stat_money[i])) >= 0) {
+                    rectangle.setFillColor(sf::Color::Green);
+                }
+                else {
+                    rectangle.setFillColor(sf::Color::Red);
+                }
+                window.draw(rectangle);
+            }
+
             window.display();
 
-            if (frame <= 1000) {
-                ++frame;
+            if (frame <= 400) {
+                frame+=0.02;
             }
         }
         usleep(1000/fps);
@@ -585,6 +600,7 @@ int main() {
     for (auto el : stat_money) {
         cout << el << " ";
     }
+    cout << endl;
 
     return 0;
 }
